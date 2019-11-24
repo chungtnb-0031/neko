@@ -1,0 +1,16 @@
+<% provide :title, @user.name %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+		<% if @user.image.url.nil? %>
+			<%= image_tag("https://robohash.org/sitsequiquia.png?size=300x300&set=set1", style:'height:100px; object-fit:cover') %>
+		<% else %>
+			<%= image_tag(@user.image.url, style:'height:100px; object-fit:cover') %>
+		<% end %>
+      	<h1 style="text-align:left; margin-left:10px"><%= @user.name %></h1>
+        
+		<p><%= @user.email %><p>	
+      
+    </section>
+  </aside>
+</div>

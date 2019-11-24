@@ -1,0 +1,22 @@
+<div class="cart">
+	<div class="product">
+		<section class="section">
+			<%= render(@cart.line_items) %>
+
+			<div class="columns">
+				<div class="column">
+				<%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: "Are you sure? " }, class: 'btn btn-primary btn-sm' %>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="price">
+		<%= link_to 'Keep Shopping', food_path, class: 'button is-warning' %>
+		<div class="column total has-text-right">
+			<h4 class="title is-4">
+				<span class="f5 has-text-grey">Total:</span> <%= number_to_currency(@cart.total_price) %>
+			</h4>
+		</div>
+	</div>
+</div>
+

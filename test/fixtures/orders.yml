@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  cat_id: 1
+  arrived_time: 2019-11-23 15:18:10
+  subtotal: 1
+  total: 1
+  order_status: one
+
+two:
+  user: two
+  cat_id: 1
+  arrived_time: 2019-11-23 15:18:10
+  subtotal: 1
+  total: 1
+  order_status: two

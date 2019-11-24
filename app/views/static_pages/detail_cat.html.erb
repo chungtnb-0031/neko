@@ -1,0 +1,66 @@
+<% provide :title, @cat.name %>
+<div class="center" style="margin:30px 0px;">
+	<div style="display:flex; justify-content:space-around; height: 300px">
+		<div class="center" style="width:50%;">
+			<% if !@cat.cat_images.empty? %>
+				<div id="imagesAlbum-<%= @cat.id %>" class="carousel slide " data-ride="carousel" data-interval="false">
+					<ol class="carousel-indicators">
+						<% num_of_images = @cat.cat_images.count %>
+						<% @cat.cat_images.each_with_index do |img, i| %>
+							<li data-target="#imagesAlbum-<%= @cat.id %>" data-slide-to="<%= i%>" class="<%= (i == 0)? 'active': '' %>"></li>
+						<% end %>
+					</ol>
+					<div class="carousel-inner">
+						<% @cat.cat_images.each_with_index do |img, i| %>
+							<div class="carousel-item <%= (i == 0)? 'active': '' %> center"> 
+								<%= image_tag(img.link, class: "image_detail") %>
+							</div>
+						<% end %>
+					</div>
+
+					<a class="carousel-control-prev" href="#imagesAlbum-<%= @cat.id %>" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					</a>
+					<a class="carousel-control-next" href="#imagesAlbum-<%= @cat.id %>" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					</a>
+				</div>
+			<% end %>
+		</div>
+		<div style="width:50%;display:flex; flex-direction:column;align-content:flex-start">
+			<h3 style="text-align:left"><%= @cat.name %></h3>
+			<p class="badge badge-info" style="width:30%; padding:2px"><%= @cat.category %></p>
+			<span style="text-align:left; margin-left:10px"><%= @cat.description %></span>
+			<button type="button" class="btn btn-primary btn-sm">Order</button>
+		</div>
+	</div>
+	<h2 style="margin:30px 0;">Comment</h2>
+	<div class="comment">
+		<% if !@cat.cat_rates.empty? %>
+			<% @cat.cat_rates.each do |rate| %>
+				<div class="box-comt">
+					<% user = User.find_by id: rate.user_id %>
+					<% if(!user.image.url.nil?) %>
+						<%= image_tag(user.image.url, style:'height:100%; width:30%; object-fit:cover', alt:'...') %>
+					<% else %>
+						<%= gravatar_for(user, size: Settings.user.ava_size) %>
+					<% end %>
+					<div class="cmt-detail">
+						<h4><%= user.name %></h4>
+						<i><%= time_ago_in_words(rate.created_at)%></i>
+						<span style="margin-top:10px"> <%= rate.comment%> <span>
+						<div class="star">
+							<% if rate.rate_point %>
+								
+								<i class="far fa-thumbs-up"></i>
+							<% end %>
+						</div>
+
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+

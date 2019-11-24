@@ -1,0 +1,8 @@
+<% provide :title, t(".title") %>
+<h1 style="margin:20px 0px 30px 0px"> <%= t ".title" %> </h1>
+
+<% @foods.each do |food| %>
+
+    <p><%= food.name %></p>
+
+<% end %>

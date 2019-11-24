@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-md" style="background-color: #FDDAE1; display: flex; align-items: center; justify-content:space-around">
+  <div class="container" style="display: flex; padding: 5px; align-items: center; width:40%; justify-content:center">
+		<%= link_to image_tag("icon.jpg", alt: t(".logo"), style: 'height: 60px'), root_path %>
+		<%= link_to t("name"), root_path, id: "logo" %>
+	</div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown" style="margin-left:200px">
+	<ul class="navbar-nav" style="display: flex; align-items: center; justify-content:space-between; width:70%; font-size: 18px; font-weight: bold; font-family: 'Quicksand', sans-serif;">
+		<li class="nav-item active">
+			<%= link_to t("home"), root_path %>
+		</li>
+		<li class="nav-item">
+			<%= link_to t("static_pages.cat.title"), cat_path %>
+		</li>
+		<li class="nav-item">
+			<%= link_to t("static_pages.food.title"), food_path %>
+		</li>	  
+		<% if logged_in? %>
+			
+				<% if total_cart_items %>
+					<%= link_to cart_path(@cart), class:"navbar-item button is-warning" do %>
+						<span class="icon is-small">
+							<i class="fa fa-shopping-cart"></i>
+						</span>
+						<span>
+							<%= cart_count_over_one %>
+						</span>
+					<% end %>
+				<% end %>
+			
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Quicksand', sans-serif;">
+					<%= current_user.name %>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="font-family: 'Quicksand', sans-serif;"> 
+					<p><%= link_to t(".profile"), current_user %></p>
+					<p><%= link_to t(".setting"), edit_user_path(current_user) %></p>
+					<p><%= link_to t(".logout"), logout_path, method: :delete %></p>
+				</div>
+			</li>
+		<% else %>
+			<span><%= link_to t("login"), login_path %></span>
+		<% end %>
+	</ul>
+  </div>
+</nav>

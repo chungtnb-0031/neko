@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  cat_id: MyString
+  arrived_time: 2019-11-23 23:33:54
+
+two:
+  user: two
+  cat_id: MyString
+  arrived_time: 2019-11-23 23:33:54

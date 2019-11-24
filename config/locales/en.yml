@@ -1,0 +1,136 @@
+en:
+  name: "Mongu"
+  signup: "Sign up now!"
+  english: "English"
+  vietnamese: "Vietnamese"
+  base_title: "Cat & Food Restaurant"
+  home: "HOME"
+  login: "Log in"
+  form: "The form contains"
+  error: "error"
+  activerecord:
+    attributes:
+        user:
+          name: "Name"
+          email: "Email"
+          password: "Password"
+          password_confirmation: "Password Confirmation"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "can't be blank"
+            email:
+              blank: "can't be blank"
+              invalid: "is invalid"
+              taken: "has already been taken"
+            password:
+              blank: "can't be blank"
+              too_short: "is too short (minimum is 6 characters)"
+            password_confirmation:
+              confirmation: "doesn't match Password"
+  layouts:
+    header:
+      user: "Users"
+      profile: "Profile"
+      setting: "Edit"
+      logout: "Log out"
+      account: "Account"
+  sessions:
+    new:
+      title: "Log in"
+      email: "Email"
+      password: "Password"
+      ask: "New user?"
+      remember: "Remember me on this computer"
+      forgot: "(forgot password)"
+    create:
+      notice: "Invalid email/password combination"
+      user: "Welcome User"
+      admin: "Welcome Admin"
+      message: "Account not activated. Check your email for the activation link."
+  static_pages:
+    home:
+      title: "Mongu"
+    cat:
+      title: "CAT"
+    food:
+      title:  "FOOD"
+
+  users:
+    new:
+      signup: "Sign up"
+      sentence_1: "This will be a signup page for new users."
+      sentence_2: "Create my account"
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      confirmation: "Confirmation"
+    create:
+      success: "Welcome to the Mongu Restaurant!"
+      danger: "Create Failed"
+      notice: "Please check your email to activate your account!"
+    update:
+      notice: "Profile updated!"
+    destroy:
+      success: "User deleted!"
+      danger: "Delete failed!"
+      delete_admin: "Cannot delete another admin."
+    index:
+      title: "All users"
+      notice: "Please log in!"
+    edit:
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      confirmation: "Confirmation"
+      title: "Edit user"
+      sentence_1: "Update your profile"
+      sentence_2: "Save changes"
+      sentence_3: "Change"
+      danger: "You do not have this ability."
+    user:
+      link_1: "Delete"
+      notice: "You sure?"
+    user_not_found: "User not found"
+  views:
+    pagination:
+      first: "« FIRST"
+      last: "LAST »"
+      previous: "‹ PREV"
+      next: "NEXT ›"
+      truncate: "…"
+  account_activations:
+    success: "Account activated!"
+    fail: "Invalid activation link"
+  user_mailer:
+    account_activation:
+      subject: "Account activation"
+      hi: "Hi"
+      to: "to@example.org"
+      sentence_1: "Welcome to the Mongu Restaurant! Click on the link below to activate your account:"
+    password_reset:
+      reset: "Password reset"
+      sentence_1: "To reset your password click the link below:"
+      sentence_2: "This link will expire in two hours."
+      sentence_3: "If you did not request your password to be reset, please ignore this email and your password will stay as it is."
+      link: "Reset password"
+  activate: "Activate"
+  password_resets:
+    create:
+      info: "Email sent with password reset instructions"
+      mail_not_found: "Email address not found"
+    update:
+      empty: "can't be empty"
+      success: "Password has been reset."
+    expired: "Password reset has expired."
+    user_not_found: "User not found"
+    edit:
+      password: "Password"
+      confirmation: "Confirmation"
+      update: "Update password"
+      title: "Reset password"
+    new:
+      submit: "Submit"
+      title: "Forgot password"

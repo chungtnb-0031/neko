@@ -1,0 +1,78 @@
+<% provide :title, @food.name %>
+
+<div class="center" style="margin:30px 0px;">
+	<div style="display:flex; justify-content:space-around; height: 300px">
+		<div class="center" style="width:50%;">
+			<% if !@food.food_images.empty? %>
+				<div id="imagesAlbum-<%= @food.id %>" class="carousel slide " data-ride="carousel" data-interval="false">
+					<ol class="carousel-indicators">
+						<% num_of_images = @food.food_images.count %>
+						<% @food.food_images.each_with_index do |img, i| %>
+							<li data-target="#imagesAlbum-<%= @food.id %>" data-slide-to="<%= i%>" class="<%= (i == 0)? 'active': '' %>"></li>
+						<% end %>
+					</ol>
+					<div class="carousel-inner">
+						<% @food.food_images.each_with_index do |img, i| %>
+							<div class="carousel-item <%= (i == 0)? 'active': '' %> center"> 
+								<%= image_tag(img.link, class: "image_detail") %>
+							</div>
+						<% end %>
+					</div>
+
+					<a class="carousel-control-prev" href="#imagesAlbum-<%= @food.id %>" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					</a>
+					<a class="carousel-control-next" href="#imagesAlbum-<%= @food.id %>" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					</a>
+				</div>
+			<% end %>
+		</div>
+		<div style="width:50%;display:flex; flex-direction:column;align-content:flex-start">
+			<h3 style="text-align:left"><%= @food.name %></h3>
+			<p class="badge badge-info" style="width:30%; padding:2px"><%= @food.category %></p>
+			<span style="text-align:left; margin-left:10px"><%= @food.description %></span>
+			<h5 style="text-align:left; margin-left:10px">Price: <%= number_to_currency(@food.price , unit: "VND", format: "%n %u", precision: 0) %> </h5>
+			<div style="margin-left:10px; display:flex;">
+				<div class="star">
+					<% @food.point.to_i.times do  %>
+						<span class="glyphicon glyphicon-star"></span>
+					<% end %>
+				</div>
+				<div class="star-not">
+					<% (5 - @food.point.to_i).times do  %>
+						<span class="glyphicon glyphicon-star"></span>
+					<% end %>
+				</div>
+			</div>
+			<%= button_to 'Add to cart', line_items_path(food_id: @food), class: 'btn btn-primary btn-sm' %>
+		</div>
+	</div>
+	
+	<h2 style="margin:30px 0;">Comment</h2>
+	<div class="comment">
+		<% if !@food.food_rates.empty? %>
+			<% @food.food_rates.each do |rate| %>
+				<div class="box-comt">
+					<% user = User.find_by id: rate.user_id %>
+					<% if(!user.image.url.nil?) %>
+						<%= image_tag(user.image.url, style:'height:100%; width:30%; object-fit:cover', alt:'...') %>
+					<% else %>
+						<%= gravatar_for(user, size: Settings.user.ava_size) %>
+					<% end %>
+					<div class="cmt-detail">
+						<h4><%= user.name %></h4>
+						<i><%= time_ago_in_words(rate.created_at)%></i>
+						<span style="margin-top:10px"> <%= rate.comment%> <span>
+						<div class="star">
+							<% rate.rate_point.to_i.times do  %>
+								<span class="glyphicon glyphicon-star"></span>
+							<% end %>
+						</div>
+
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>

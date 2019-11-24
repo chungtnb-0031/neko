@@ -1,0 +1,11 @@
+user_check:
+  max_name: 50
+  max_email: 255
+  min_password: 6
+user:
+  ava_size: 150
+  gravatar_size: 50
+per_page_user : 10
+per_page_item : 6
+remember: "1"
+set_time_expired: 2

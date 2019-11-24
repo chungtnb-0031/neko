@@ -1,0 +1,10 @@
+<% provide :title, t(".title") %>
+<h1 style="margin:20px 0px 30px 0px"> <%= t ".title" %> </h1>
+
+<ul style="display:flex; flex-wrap: wrap; justify-content:space-between">
+  <%= render @foods %>
+</ul>
+
+<div style="width:98%; display:flex; flex-direction:column; align-items: flex-end">
+	<%= paginate @foods , theme: "twitter-bootstrap-3" %>
+</div>
