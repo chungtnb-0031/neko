@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2019_11_23_170051) do
     t.integer "cat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_cat_rates_on_cat_id"
+    t.index ["user_id"], name: "index_cat_rates_on_user_id"
   end
 
   create_table "cats", force: :cascade do |t|
