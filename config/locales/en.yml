@@ -57,7 +57,6 @@ en:
       title: "CAT"
     food:
       title:  "FOOD"
-
   users:
     new:
       signup: "Sign up"
@@ -67,6 +66,7 @@ en:
       email: "Email"
       password: "Password"
       confirmation: "Confirmation"
+      birth: "Birthday"
     create:
       success: "Welcome to the Mongu Restaurant!"
       danger: "Create Failed"
@@ -90,6 +90,7 @@ en:
       sentence_2: "Save changes"
       sentence_3: "Change"
       danger: "You do not have this ability."
+      birth: "Birthday"
     user:
       link_1: "Delete"
       notice: "You sure?"
@@ -134,3 +135,6 @@ en:
     new:
       submit: "Submit"
       title: "Forgot password"
+  carts:
+    show:
+      notice: "You have to sign in"

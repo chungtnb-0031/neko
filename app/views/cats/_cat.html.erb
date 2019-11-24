@@ -1,27 +1,29 @@
 <div class="center" style="width:30%;">
-  <% if !cat.cat_images.empty? %>
-      <div id="imagesAlbum-<%= cat.id %>" class="carousel slide center" data-ride="carousel" data-interval="false" >
-        <ol class="carousel-indicators">
-          <% num_of_images = cat.cat_images.count %>
-          <% cat.cat_images.each_with_index do |img, i| %>
-          <li data-target="#imagesAlbum-<%= cat.id %>" data-slide-to="<%= i%>" class="<%= (i == 0)? 'active': '' %>"></li>
-          <% end %>
-        </ol>
-        <div class="carousel-inner">
-          <% cat.cat_images.each_with_index do |img, i| %>
-            <div class="carousel-item <%= (i == 0)? 'active': '' %>">
-              <%= image_tag(img.link, style:'height:200px; object-fit:cover;-webkit-filter: brightness(0.8); filter: brightness(0.8);') %>
-            </div>
-          <% end %>
-        </div>
+  	<% if !cat.cat_images.empty? %>
+		<div id="imagesAlbum-<%= cat.id %>" class="carousel slide center" data-ride="carousel" data-interval="false" >
+			<ol class="carousel-indicators">
+				<% num_of_images = cat.cat_images.count %>
+				<% cat.cat_images.each_with_index do |img, i| %>
+				<li data-target="#imagesAlbum-<%= cat.id %>" data-slide-to="<%= i%>" class="<%= (i == 0)? 'active': '' %>"></li>
+				<% end %>
+			</ol>
+			<div class="carousel-inner center">
+				<%= link_to detail_cat_path(id: cat.id) do %>
+					<% cat.cat_images.each_with_index do |img, i| %>
+						<div class="carousel-item <%= (i == 0)? 'active': '' %>">
+						<%= image_tag(img.link, style:'width:75%;height:200px; object-fit:cover') %>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
 
-        <a class="carousel-control-prev" href="#imagesAlbum-<%= cat.id %>" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </a>
-        <a class="carousel-control-next" href="#imagesAlbum-<%= cat.id %>" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </a>
-      </div>
+			<a class="carousel-control-prev" href="#imagesAlbum-<%= cat.id %>" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			</a>
+			<a class="carousel-control-next" href="#imagesAlbum-<%= cat.id %>" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			</a>
+		</div>
     <% end %>
 	<h4><%= link_to cat.name , detail_cat_path(id: cat.id) %><h4>
 	<button type="button" class="btn btn-primary btn-sm">Order</button>
