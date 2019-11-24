@@ -34,14 +34,7 @@
 			<h5 style="text-align:left; margin-left:10px">Price: <%= number_to_currency(@food.price , unit: "VND", format: "%n %u", precision: 0) %> </h5>
 			<div style="margin-left:10px; display:flex;">
 				<div class="star">
-					<% @food.point.to_i.times do  %>
-						<span class="glyphicon glyphicon-star"></span>
-					<% end %>
-				</div>
-				<div class="star-not">
-					<% (5 - @food.point.to_i).times do  %>
-						<span class="glyphicon glyphicon-star"></span>
-					<% end %>
+					<%= render_stars(@food.average_point) %>
 				</div>
 			</div>
 			<%= button_to 'Add to cart', line_items_path(food_id: @food), class: 'btn btn-primary btn-sm' %>
@@ -65,10 +58,17 @@
 								<h4><%= user.name %></h4>
 								<i><%= time_ago_in_words(rate.created_at)%></i>
 								<span style="margin-top:10px"> <%= rate.comment%> <span>
-								<div class="star">
-									<% rate.rate_point.to_i.times do  %>
-										<span class="glyphicon glyphicon-star"></span>
-									<% end %>
+								<div style="display:flex;">
+									<div class="star">
+										<% rate.rate_point.to_i.times do  %>
+											<span class="glyphicon glyphicon-star"></span>
+										<% end %>
+									</div>
+									<div class="star-not">
+										<% (5 - rate.rate_point.to_i).to_i.times do  %>
+											<span class="glyphicon glyphicon-star"></span>
+										<% end %>
+									</div>
 								</div>
 
 							</div>
@@ -85,12 +85,18 @@
 								<h4><%= user.name %></h4>
 								<i><%= time_ago_in_words(rate.created_at)%></i>
 								<span style="margin-top:10px"> <%= rate.comment%> <span>
-								<div class="star">
-									<% rate.rate_point.to_i.times do  %>
-										<span class="glyphicon glyphicon-star"></span>
-									<% end %>
+								<div style="display:flex;">
+									<div class="star">
+										<% rate.rate_point.to_i.times do  %>
+											<span class="glyphicon glyphicon-star"></span>
+										<% end %>
+									</div>
+									<div class="star-not">
+										<% (5 - rate.rate_point.to_i).to_i.times do  %>
+											<span class="glyphicon glyphicon-star"></span>
+										<% end %>
+									</div>
 								</div>
-
 							</div>
 						</div>
 					<% end %>
