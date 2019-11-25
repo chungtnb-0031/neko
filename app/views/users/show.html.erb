@@ -3,17 +3,21 @@
 <div class="div-center">
 	<div class="user-info cart">
 		<div style="width: 40%;" class="div-center">
-			<% if @user.image.url.nil? %>
-				<%= image_tag("https://robohash.org/sitsequiquia.png?size=300x300&set=set1", style:'width:90%; object-fit:cover') %>
+			<% if(!@user.image.url.nil?) %>
+				<%= image_tag(@user.image.url, style:'width:90%; object-fit:cover', alt:'...') %>
 			<% else %>
-				<%= image_tag(@user.image.url, style:'width:90%; object-fit:cover') %>
+				<div class="ava-box div-center">
+					<%= gravatar_for(@user, size: Settings.user.ava_size) %>
+				</div>
 			<% end %>
 		</div>
 		<div style="width: 50%; padding:20px">
       		<p><b>Name: </b> <%= @user.name %></p>
 			<p><b>Email: </b> <%= @user.email %></p>
 			<p><b>Birthday: </b> <%= @user.date_of_birth.strftime("%d %B %Y") %></p>
+			<%= link_to edit_user_path(current_user) do %>
+				<button type="button" class="btn btn-primary" style="width:100%">Edit</button>
+			<% end %>
 		</div>
 	</div>
-	
 </div>

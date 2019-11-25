@@ -7,10 +7,12 @@
       <%= render "shared/error_messages" %>
 
 	  <%= f.label "avatar" %>
-		<% if @user.image.url.nil? %>
-			<%= image_tag("https://robohash.org/sitsequiquia.png?size=300x300&set=set1", style:'height:100px; object-fit:cover') %>
+		<% if(!@user.image.url.nil?) %>
+			<%= image_tag(@user.image.url, style:'width:90%; object-fit:cover', alt:'...') %>
 		<% else %>
-			<%= image_tag(@user.image.url, style:'height:100px; object-fit:cover') %>
+			<div class="ava-box div-center">
+				<%= gravatar_for(@user, size: Settings.user.ava_size) %>
+			</div>
 		<% end %>
 	  <%= f.file_field :image , class: "form-control"%>
 

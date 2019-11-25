@@ -36,7 +36,9 @@
 				<div class="star">
 					<%= render_stars(@food.average_point) %>
 				</div>
+				<h5 style="text-align:left; margin-left:10px"><%= @food.num_of_rates %><i class="fa fa-user" style="margin-left:5px"></i></h5>
 			</div>
+
 			<%= button_to 'Add to cart', line_items_path(food_id: @food), class: 'btn btn-primary btn-sm' %>
 		</div>
 	</div>
