@@ -37,9 +37,7 @@ class CatItemsController < ApplicationController
 			flash[:danger] = "Only one cat can be ordered"
 			format.html{redirect_to root_path}
 		end
-	end
-
-    
+	end   
   end
 
   def update
