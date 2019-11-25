@@ -18,18 +18,28 @@ class CatItemsController < ApplicationController
   end
 
   def create
+	@cat_items = CatItem.all
 	cat = Cat.find(params[:cat_id])
-    @cat_item = @cart.add_cat(cat)
+	if @cat_items.blank?
+		@cat_item = @cart.add_cat(cat)
 
-    respond_to do |format|
-      if @cat_item.save
-        format.html { redirect_to @cat_item.cart, notice: 'Cat item was successfully created.' }
-        format.json { render :show, status: :created, location: @cat_item }
-      else
-        format.html { render :new }
-        format.json { render json: @cat_item.errors, status: :unprocessable_entity }
-      end
-    end
+		respond_to do |format|
+			if @cat_item.save
+			  format.html { redirect_to @cat_item.cart, notice: 'Cat item was successfully created.' }
+			  format.json { render :show, status: :created, location: @cat_item }
+			else
+			  format.html { render :new }
+			  format.json { render json: @cat_item.errors, status: :unprocessable_entity }
+			end
+		end
+	else
+		respond_to do |format|
+			flash[:danger] = "Only one cat can be ordered"
+			format.html{redirect_to root_path}
+		end
+	end
+
+    
   end
 
   def update
