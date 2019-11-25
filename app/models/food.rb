@@ -10,6 +10,10 @@ class Food < ApplicationRecord
 	def average_point
 		food_rates.average(:rate_point)
 	end
+
+	def num_of_rates
+		food_rates.count
+	end
 	
 	private
 
