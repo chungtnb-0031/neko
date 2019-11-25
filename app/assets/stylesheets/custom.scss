@@ -338,13 +338,13 @@ h3 {
 .star{
 	display: flex;
 	align-items: start;
-	margin: 15px 0px;
+	margin: 10px 0px;
 	color: $main-strong;
 }
 .star-not{
 	display: flex;
 	align-items: start;
-	margin: 15px 0px;
+	margin: 10px 0px;
 	color: $gray-light;
 }
 
@@ -410,4 +410,53 @@ h3 {
 	border: 1px solid #ddd;
 	border-radius: .25em;
 }
-  
+
+.user-info{
+	border: 5px solid $main;
+	height: 250px;
+	padding: 10px;
+	width: 50%;
+}
+.div-center{
+	display:flex;
+	justify-content:center;
+}
+
+.appetizer{
+	height:120px; 
+	background-image: url('https://www.elizabethrider.com/wp-content/uploads/2018/12/Elegant-Healthy-Smoked-Salmon-Appetizer-Elizabeth-Rider-Blog.jpg');
+	background-size: cover;
+	display:flex;
+	align-items: center;
+	justify-content:center;
+}
+
+
+.type-title{
+	font-size: 50px;
+	font-weight: bolder;
+	color: #fff;
+}
+
+.main-dish{
+	height:120px; 
+	background-image: url('https://tastykitchen.com/wp-content/uploads/2010/02/Tasty-Kitchen-Blog-Main-Dish-Salads-Ginger-Steak-Salad-from-Ree-Drummond-of-The-Pioneer-Woman.jpg');
+	background-size: cover;
+	display:flex;
+	align-items: center;
+	justify-content:center;
+}
+
+.dessert{
+	height:120px; 
+	background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQm8UPtm1zr93yEZBQYg2Kf7LjzVxpQB0K4GkDk7IWhK93ycUWc');
+	background-size: cover;
+	display:flex;
+	align-items: center;
+	justify-content:center;
+}
+
+.ava-box{
+	height: 100%;
+	width: 30%;
+}

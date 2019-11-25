@@ -26,6 +26,9 @@
 		</div>
     <% end %>
 	<h4><%= link_to cat.name , detail_cat_path(id: cat.id) %><h4>
+	<div class="star div-center">
+		<span><i class="far fa-thumbs-up"></i><%= cat.num_of_likes %></span>
+	</div>
 	<button type="button" class="btn btn-primary btn-sm">Order</button>
   <hr>
 </div>
