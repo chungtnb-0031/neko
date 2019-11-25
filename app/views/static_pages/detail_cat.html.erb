@@ -34,7 +34,6 @@
 			<div class="star">
 				<span style="text-align:left; margin-left:10px"><i class="far fa-thumbs-up"></i><%= @cat.num_of_likes %></span>
 			</div>
-			<button type="button" class="btn btn-primary btn-sm">Order</button>
 			<%= button_to 'Order', cat_items_path(cat_id: @cat), class: 'btn btn-primary btn-sm' %>
 		</div>
 	</div>

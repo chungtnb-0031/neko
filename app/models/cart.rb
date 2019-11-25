@@ -17,6 +17,6 @@ class Cart < ApplicationRecord
   end
 
   def add_cat(cat)
-    cat_items.build(cat_id: cat.id)
+	cat_items.build(cat_id: cat.id)
   end
 end
