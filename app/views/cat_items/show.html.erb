@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cat:</strong>
+  <%= @cat_item.cat %>
+</p>
+
+<p>
+  <strong>Cart:</strong>
+  <%= @cat_item.cart %>
+</p>
+
+<%= link_to 'Edit', edit_cat_item_path(@cat_item) %> |
+<%= link_to 'Back', cat_items_path %>
