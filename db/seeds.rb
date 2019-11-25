@@ -8,6 +8,7 @@ User.create! name: "Admin",
   activated_at: Time.zone.now
 
 9.times do |n|
+  Faker::Config.locale = :en
   name = Faker::Name.name
   email = "user#{n+1}@gmail.com"
   password = "password"
@@ -22,6 +23,7 @@ User.create! name: "Admin",
 end
 
 9.times do |n|
+	Faker::Config.locale = :en
 	Cat.create! name: Faker::Creature::Cat.name,
 	category: Faker::Creature::Cat.breed,
 	description: Faker::Creature::Cat.registry,
@@ -33,6 +35,7 @@ end
 foodType = ["Appetizer", "Main dish", "Dessert"]
 
 30.times do |n|
+	Faker::Config.locale = :en
 	Food.create! name: Faker::Food.dish,
 	category: foodType.sample,
 	description: Faker::Food.description,
@@ -75,6 +78,7 @@ foods = Food.all
 users = User.all
 foods.each do |food|
   users.each do |user|
+	Faker::Config.locale = :en
     FoodRate.create! comment: Faker::Lorem.sentence(word_count: 5),
       user_id: user.id,
 	  food_id: food.id,
@@ -85,10 +89,14 @@ end
 cats = Cat.all
 cats.each do |cat|
   users.each do |user|
-    CatRate.create! comment: Faker::Lorem.sentence(word_count: 5),
-      user_id: user.id,
-	  cat_id: cat.id,
-	  rate_point: rand(0..1)
+	isRate = rand(0..1)
+	if (isRate == 1)
+		Faker::Config.locale = :en
+		CatRate.create! comment: Faker::Lorem.sentence(word_count: 5),
+		user_id: user.id,
+		cat_id: cat.id,
+		rate_point: rand(0..1)
+	end
   end
 end
 

@@ -26,8 +26,9 @@
 		</div>
     <% end %>
 	<h4><%= link_to cat.name , detail_cat_path(id: cat.id) %><h4>
-	<div class="star div-center">
-		<span><i class="far fa-thumbs-up"></i><%= cat.num_of_likes %></span>
+	<div class="" style="display:flex; justify-content:center; align-items:center">
+		<i class="star far fa-thumbs-up"></i>
+		<span> <%= cat.num_of_likes %>/<%= cat.num_of_rates %></span>
 	</div>
 	<%= button_to 'Order', cat_items_path(cat_id: cat), class: 'btn btn-primary btn-sm' %>
   <hr>

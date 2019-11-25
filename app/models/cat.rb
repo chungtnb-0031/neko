@@ -8,4 +8,8 @@ class Cat < ApplicationRecord
 	def num_of_likes
 		cat_rates.where("rate_point = ?", 1).count
 	end
+
+	def num_of_rates
+		cat_rates.count
+	end
 end

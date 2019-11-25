@@ -31,8 +31,9 @@
 			<h3 style="text-align:left"><%= @cat.name %></h3>
 			<p class="badge badge-info" style="width:30%; padding:2px"><%= truncate(@cat.category, length: 25) %></p>
 			<span style="text-align:left; margin-left:10px"><%= @cat.description %></span>
-			<div class="star">
-				<span style="text-align:left; margin-left:10px"><i class="far fa-thumbs-up"></i><%= @cat.num_of_likes %></span>
+			<div class="" style="display:flex; align-items:center; margin-left:10px">
+				<i class="star far fa-thumbs-up"></i>
+				<span> <%= @cat.num_of_likes %>/<%= @cat.num_of_rates %></span>
 			</div>
 			<%= button_to 'Order', cat_items_path(cat_id: @cat), class: 'btn btn-primary btn-sm' %>
 		</div>
