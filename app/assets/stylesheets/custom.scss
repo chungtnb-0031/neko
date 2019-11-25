@@ -5,7 +5,7 @@ $gray-medium-light: #eaeaea;
 $gray-light: #777;
 $gray: #555;
 $gray-darker: #222;
-$main: #FDDAE1;
+$main: #fddae1;
 $main-light: rgb(255, 238, 241);
 $main-strong: rgb(247, 178, 192);
 
@@ -293,10 +293,8 @@ h3 {
 	display: block;
 	margin: auto;
 	height: 300px;
-	width: 90%;
+	width: 75%;
 	object-fit: cover;
-	-webkit-filter: brightness(0.8); 
-	filter: brightness(0.8);
 }
 
 .footer-detail{
@@ -327,7 +325,6 @@ h3 {
 .box-comt{
 	border: 1px solid #bbb;
 	border-radius: 12px;
-	width: 50%;
 	height: 150px;
 	margin: 10px 0px;
 	display: flex;
@@ -341,13 +338,13 @@ h3 {
 .star{
 	display: flex;
 	align-items: start;
-	margin: 25px 0px;
+	margin: 15px 0px;
 	color: $main-strong;
 }
 .star-not{
 	display: flex;
 	align-items: start;
-	margin: 25px 0px;
+	margin: 15px 0px;
 	color: $gray-light;
 }
 
@@ -355,9 +352,62 @@ h3 {
 	display: flex;
 	justify-content: space-around;
 }
-.cart .product{
+.product{
 	width: 60%;
 }
-.cart .price{
+.price{
 	width: 30%;
 }
+
+.border-price{
+	border: 5px solid $main;
+	height: 150px;
+	padding: 10px;
+}
+
+.carousel-control-prev-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+	color: black;
+}
+   
+.carousel-control-next-icon {
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23ff0000' viewBox='0 0 8 8'%3E%3Cpath d='M1.5 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+	color: black;
+}
+
+.read-more-state {
+	display: none;
+}
+
+.read-more-target {
+	opacity: 0;
+	max-height: 0;
+	font-size: 0;
+	transition: .25s ease;
+}
+
+.read-more-state:checked ~ .read-more-wrap .read-more-target {
+	opacity: 1;
+	font-size: inherit;
+	max-height: 999em;
+}
+
+.read-more-state ~ .read-more-trigger:before {
+	content: 'Show more';
+}
+  
+.read-more-state:checked ~ .read-more-trigger:before {
+	content: 'Show less';
+}
+  
+.read-more-trigger {
+	cursor: pointer;
+	display: inline-block;
+	padding: 0 .5em;
+	color: #666;
+	font-size: .9em;
+	line-height: 2;
+	border: 1px solid #ddd;
+	border-radius: .25em;
+}
+  

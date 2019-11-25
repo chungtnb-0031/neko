@@ -5,6 +5,10 @@ class Food < ApplicationRecord
 	has_many :line_items
 
 	scope :suggest_foods, ->{order(point: :desc).take(3)}
+
+	def average_point
+		food_rates.average(:rate_point)
+	end
 	
 	private
 

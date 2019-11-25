@@ -2,15 +2,15 @@
 
 <div class="center">
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="margin-bottom:30px">
-		<div class="carousel-inner">
+		<div class="carousel-inner center">
 			<div class="carousel-item active">
-			<img src="https://wtop.com/wp-content/uploads/2015/02/AP277688134469_21.jpg" class="d-block w-100" alt="..." style="height: 400px;object-fit: cover;-webkit-filter: brightness(0.8); filter: brightness(0.8);">
+				<img src="https://wtop.com/wp-content/uploads/2015/02/AP277688134469_21.jpg" alt="..." style="height: 400px;object-fit: cover; width:75%">
 			</div>
 			<div class="carousel-item">
-			<img src="https://assets.entrepreneur.com/content/3x2/2000/20160607153126-coffee-cafe-breaks-food-eating-espresso-restaurant-relaxation.jpeg?width=700&crop=2:1" class="d-block w-100" alt="..." style="height: 400px;object-fit: cover;-webkit-filter: brightness(0.8); filter: brightness(0.8);">
+				<img src="https://assets.entrepreneur.com/content/3x2/2000/20160607153126-coffee-cafe-breaks-food-eating-espresso-restaurant-relaxation.jpeg?width=700&crop=2:1" alt="..." style="height: 400px;object-fit: cover; width:75%">
 			</div>
 			<div class="carousel-item">
-			<img src="http://48tx1q1rrcysi4t7l687xbtt.wpengine.netdna-cdn.com/wp-content/uploads/2015/01/austin-cat-cafe.jpg" class="d-block w-100" alt="..." style="height: 400px;object-fit: fill; -webkit-filter: brightness(0.8); filter: brightness(0.8);">
+				<img src="http://48tx1q1rrcysi4t7l687xbtt.wpengine.netdna-cdn.com/wp-content/uploads/2015/01/austin-cat-cafe.jpg" alt="..." style="height: 400px;object-fit: fill; width:75%">
 			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -27,10 +27,12 @@
 		<div class="suggestion" style="display:flex; justify-content:space-between">
 			<% @foods.each do |food| %>
 				<div style="width:30%">
-					<% if food.food_images.first %>
-						<%= image_tag(food.food_images.first.link, style:"width:90%; height:150px; object-fit:cover") %>
+					<%= link_to detail_food_path(id: food.id) do %>
+						<% if food.food_images.first %>
+							<%= image_tag(food.food_images.first.link, style:"width:90%; height:150px; object-fit:cover") %>
+						<% end %>
+						<p><%= food.name %><p>
 					<% end %>
-					<p><%= link_to food.name , detail_food_path(id: food.id) %><p>
 					<hr>
 				</div>
 			<% end %>
@@ -45,10 +47,12 @@
 		<div class="suggestion" style="display:flex; justify-content:space-between">
 			<% @cats.each do |cat| %>
 				<div style="width:30%">
-					<% if cat.cat_images.first %>
-						<%= image_tag(cat.cat_images.first.link, style:"width:90%; height:150px; object-fit:cover") %>
+					<%= link_to detail_cat_path(id: cat.id) do %>
+						<% if cat.cat_images.first %>
+							<%= image_tag(cat.cat_images.first.link, style:"width:90%; height:150px; object-fit:cover") %>
+						<% end %>
+						<p><%= cat.name %><p>
 					<% end %>
-					<p><%= link_to cat.name , detail_cat_path(id: cat.id) %><p>
 					<hr>
 				</div>
 			<% end %>

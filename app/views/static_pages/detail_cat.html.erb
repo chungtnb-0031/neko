@@ -10,7 +10,7 @@
 							<li data-target="#imagesAlbum-<%= @cat.id %>" data-slide-to="<%= i%>" class="<%= (i == 0)? 'active': '' %>"></li>
 						<% end %>
 					</ol>
-					<div class="carousel-inner">
+					<div class="carousel-inner center">
 						<% @cat.cat_images.each_with_index do |img, i| %>
 							<div class="carousel-item <%= (i == 0)? 'active': '' %> center"> 
 								<%= image_tag(img.link, class: "image_detail") %>
@@ -29,38 +29,68 @@
 		</div>
 		<div style="width:50%;display:flex; flex-direction:column;align-content:flex-start">
 			<h3 style="text-align:left"><%= @cat.name %></h3>
-			<p class="badge badge-info" style="width:30%; padding:2px"><%= @cat.category %></p>
+			<p class="badge badge-info" style="width:30%; padding:2px"><%= truncate(@cat.category, length: 25) %></p>
 			<span style="text-align:left; margin-left:10px"><%= @cat.description %></span>
+			<div class="star">
+				<span style="text-align:left; margin-left:10px"><i class="far fa-thumbs-up"></i><%= @cat.num_of_likes %></span>
+			</div>
 			<button type="button" class="btn btn-primary btn-sm">Order</button>
 		</div>
 	</div>
 	<h2 style="margin:30px 0;">Comment</h2>
 	<div class="comment">
 		<% if !@cat.cat_rates.empty? %>
-			<% @cat.cat_rates.each do |rate| %>
-				<div class="box-comt">
-					<% user = User.find_by id: rate.user_id %>
-					<% if(!user.image.url.nil?) %>
-						<%= image_tag(user.image.url, style:'height:100%; width:30%; object-fit:cover', alt:'...') %>
-					<% else %>
-						<%= gravatar_for(user, size: Settings.user.ava_size) %>
-					<% end %>
-					<div class="cmt-detail">
-						<h4><%= user.name %></h4>
-						<i><%= time_ago_in_words(rate.created_at)%></i>
-						<span style="margin-top:10px"> <%= rate.comment%> <span>
-						<div class="star">
-							<% if rate.rate_point %>
-								
-								<i class="far fa-thumbs-up"></i>
+			<input type="checkbox" class="read-more-state" id="post-2" />
+  			<div class="read-more-wrap">
+				<% @cat.cat_rates.each_with_index do |rate,i| %>
+					<% if(i<3) %>
+						<div class="box-comt">
+							<% user = User.find_by id: rate.user_id %>
+							<% if(!user.image.url.nil?) %>
+								<%= image_tag(user.image.url, style:'height:100%; width:30%; object-fit:cover', alt:'...') %>
+							<% else %>
+								<%= gravatar_for(user, size: Settings.user.ava_size) %>
 							<% end %>
-						</div>
+							<div class="cmt-detail">
+								<h4><%= user.name %></h4>
+								<i><%= time_ago_in_words(rate.created_at)%></i>
+								<span style="margin-top:10px"> <%= rate.comment%> <span>
+								<div class="star">
+									<% if (rate.rate_point > 0) %>
+										<i class="far fa-thumbs-up"></i>
+									<% else %>
+										<i class="far fa-thumbs-down"></i>
+									<% end %>
+								</div>
 
-					</div>
-				</div>
-			<% end %>
+							</div>
+						</div>
+					<% else %>
+						<div class="box-comt read-more-target">
+							<% user = User.find_by id: rate.user_id %>
+							<% if(!user.image.url.nil?) %>
+								<%= image_tag(user.image.url, style:'height:100%; width:30%; object-fit:cover', alt:'...') %>
+							<% else %>
+								<%= gravatar_for(user, size: Settings.user.ava_size) %>
+							<% end %>
+							<div class="cmt-detail">
+								<h4><%= user.name %></h4>
+								<i><%= time_ago_in_words(rate.created_at)%></i>
+								<span style="margin-top:10px"> <%= rate.comment%> <span>
+								<div class="star">
+									<% if (rate.rate_point > 0) %>
+										<i class="far fa-thumbs-up"></i>
+									<% else %>
+										<i class="far fa-thumbs-down"></i>
+									<% end %>		
+								</div>
+
+							</div>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+  			<label for="post-2" class="read-more-trigger"></label>
 		<% end %>
 	</div>
 </div>
-
-
