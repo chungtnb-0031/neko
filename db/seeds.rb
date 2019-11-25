@@ -30,9 +30,11 @@ end
 	point: rand(1..5)
 end
 
-9.times do |n|
+foodType = ["Appetizer", "Main dish", "Dessert"]
+
+30.times do |n|
 	Food.create! name: Faker::Food.dish,
-	category: "Appetizer",
+	category: foodType.sample,
 	description: Faker::Food.description,
 	price: rand(50..100)*1000,
 	supportable: true,
@@ -41,9 +43,22 @@ end
 
 foods = Food.order(:created_at)
 foods.each do |food|
-	3.times do |n|
-		FoodImage.create! link: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQcRLIMVXIvsjS1mTXTngCqxryCE3GqG5HhoxYFtYeSdACP-kQ9",
-					food_id: food.id
+	case food.category
+	when "Main dish"
+		3.times do |n|
+			FoodImage.create! link: "https://cdn-image.myrecipes.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/pork-chunky-applesauce-ck.jpg?itok=G-tywAMn",
+						food_id: food.id
+		end
+	when "Dessert"
+		3.times do |n|
+			FoodImage.create! link: "https://www.thespruceeats.com/thmb/r_1v-wduUI3_4sJAR-EO1PKu6bw=/2048x1152/smart/filters:no_upscale()/perfect-banana-split-recipe-305712-13_preview-5b2bd062ba61770054b59b85.jpeg",
+						food_id: food.id
+		end
+	when "Appetizer"
+		3.times do |n|
+			FoodImage.create! link: "https://images-gmi-pmc.edge-generalmills.com/21db7af0-3ccf-4e96-800b-0f147aeb62f4.jpg",
+						food_id: food.id
+		end
 	end
 end
 
@@ -60,7 +75,7 @@ foods = Food.all
 users = User.all
 foods.each do |food|
   users.each do |user|
-    FoodRate.create! comment: Faker::Lorem.sentence,
+    FoodRate.create! comment: Faker::Lorem.sentence(word_count: 5),
       user_id: user.id,
 	  food_id: food.id,
 	  rate_point: rand(1..5)
@@ -70,7 +85,7 @@ end
 cats = Cat.all
 cats.each do |cat|
   users.each do |user|
-    CatRate.create! comment: Faker::Lorem.sentence,
+    CatRate.create! comment: Faker::Lorem.sentence(word_count: 5),
       user_id: user.id,
 	  cat_id: cat.id,
 	  rate_point: rand(0..1)

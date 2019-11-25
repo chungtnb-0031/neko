@@ -1,16 +1,19 @@
 <% provide :title, @user.name %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-		<% if @user.image.url.nil? %>
-			<%= image_tag("https://robohash.org/sitsequiquia.png?size=300x300&set=set1", style:'height:100px; object-fit:cover') %>
-		<% else %>
-			<%= image_tag(@user.image.url, style:'height:100px; object-fit:cover') %>
-		<% end %>
-      	<h1 style="text-align:left; margin-left:10px"><%= @user.name %></h1>
-        
-		<p><%= @user.email %><p>	
       
-    </section>
-  </aside>
+<div class="div-center">
+	<div class="user-info cart">
+		<div style="width: 40%;" class="div-center">
+			<% if @user.image.url.nil? %>
+				<%= image_tag("https://robohash.org/sitsequiquia.png?size=300x300&set=set1", style:'width:90%; object-fit:cover') %>
+			<% else %>
+				<%= image_tag(@user.image.url, style:'width:90%; object-fit:cover') %>
+			<% end %>
+		</div>
+		<div style="width: 50%; padding:20px">
+      		<p><b>Name: </b> <%= @user.name %></p>
+			<p><b>Email: </b> <%= @user.email %></p>
+			<p><b>Birthday: </b> <%= @user.date_of_birth.strftime("%d %B %Y") %></p>
+		</div>
+	</div>
+	
 </div>

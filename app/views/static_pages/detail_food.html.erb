@@ -49,11 +49,15 @@
 					<% if(i<3) %>
 						<div class="box-comt">
 							<% user = User.find_by id: rate.user_id %>
+							
 							<% if(!user.image.url.nil?) %>
-								<%= image_tag(user.image.url, style:'height:100%; width:30%; object-fit:cover', alt:'...') %>
+								<%= image_tag(user.image.url, style:'width:30%; object-fit:cover', alt:'...') %>
 							<% else %>
-								<%= gravatar_for(user, size: Settings.user.ava_size) %>
+								<div class="ava-box div-center">
+									<%= gravatar_for(user, size: Settings.user.ava_size) %>
+								</div>
 							<% end %>
+							
 							<div class="cmt-detail">
 								<h4><%= user.name %></h4>
 								<i><%= time_ago_in_words(rate.created_at)%></i>
@@ -77,9 +81,11 @@
 						<div class="box-comt read-more-target">
 							<% user = User.find_by id: rate.user_id %>
 							<% if(!user.image.url.nil?) %>
-								<%= image_tag(user.image.url, style:'height:100%; width:30%; object-fit:cover', alt:'...') %>
+								<%= image_tag(user.image.url, style:'width:30%; object-fit:cover', alt:'...') %>
 							<% else %>
-								<%= gravatar_for(user, size: Settings.user.ava_size) %>
+								<div class="ava-box div-center">
+									<%= gravatar_for(user, size: Settings.user.ava_size) %>
+								</div>
 							<% end %>
 							<div class="cmt-detail">
 								<h4><%= user.name %></h4>

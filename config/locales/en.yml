@@ -138,3 +138,6 @@ en:
   carts:
     show:
       notice: "You have to sign in"
+  foods:
+    index:
+      title: Food List

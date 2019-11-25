@@ -5,6 +5,7 @@ class Food < ApplicationRecord
 	has_many :line_items
 
 	scope :suggest_foods, ->{order(point: :desc).take(3)}
+	scope :get_category, ->(category){where "category = ?", category}
 
 	def average_point
 		food_rates.average(:rate_point)
