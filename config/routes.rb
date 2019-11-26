@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'cats/index'
+  resources :time_cats
   resources :cat_items
   get 'foods/index'
   resources :line_items
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root "static_pages#home"
   get "/cat", to: "static_pages#cat"
+  post "/cat", to: "static_pages#free_cat"
   get "/food", to: "static_pages#food"
   get "/detail_cat", to: "static_pages#detail_cat"
   get "/detail_food", to: "static_pages#detail_food"

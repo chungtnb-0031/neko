@@ -78,11 +78,14 @@ foods = Food.all
 users = User.all
 foods.each do |food|
   users.each do |user|
-	Faker::Config.locale = :en
-    FoodRate.create! comment: Faker::Lorem.sentence(word_count: 5),
-      user_id: user.id,
-	  food_id: food.id,
-	  rate_point: rand(1..5)
+	isRate = rand(0..1)
+	if (isRate == 1)
+		Faker::Config.locale = :en
+		FoodRate.create! comment: Faker::Lorem.sentence(word_count: 4),
+		user_id: user.id,
+		food_id: food.id,
+		rate_point: rand(1..5)
+	end
   end
 end
 
@@ -92,7 +95,7 @@ cats.each do |cat|
 	isRate = rand(0..1)
 	if (isRate == 1)
 		Faker::Config.locale = :en
-		CatRate.create! comment: Faker::Lorem.sentence(word_count: 5),
+		CatRate.create! comment: Faker::Lorem.sentence(word_count: 4),
 		user_id: user.id,
 		cat_id: cat.id,
 		rate_point: rand(0..1)
@@ -100,3 +103,21 @@ cats.each do |cat|
   end
 end
 
+def rand_time(from, to=Time.now)
+	Time.at(rand_in_range(from.to_f, to.to_f))
+end
+
+def rand_in_range(from, to)
+	rand * (to - from) + from
+end
+
+cats.each do |cat|
+	users.each do |user|
+		isOrder = rand(0..1)
+		if (isOrder == 1)
+			TimeCat.create! user_id: user.id,
+			cat_id: cat.id,
+			time: rand_time(2.days.ago)
+		end
+	end
+end

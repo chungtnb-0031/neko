@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @time_cat.user %>
+</p>
+
+<p>
+  <strong>Cat:</strong>
+  <%= @time_cat.cat %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @time_cat.time %>
+</p>
+
+<%= link_to 'Edit', edit_time_cat_path(@time_cat) %> |
+<%= link_to 'Back', time_cats_path %>
