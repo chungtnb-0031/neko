@@ -2,7 +2,7 @@
 <h1 style="margin:20px 0px 30px 0px"> Free Cat </h1>
 
 <ul style="display:flex; flex-wrap: wrap; justify-content:space-between">
-	<%= @freeCats.each_with_index do |cat,i| %>
+	<% @freeCats.each_with_index do |cat,i| %>
 		<div class="center" style="width:30%;">
 			<% if !cat.cat_images.empty? %>
 				<div id="imagesAlbum-<%= cat.id %>" class="carousel slide center" data-ride="carousel" data-interval="false" >

@@ -14,9 +14,10 @@ class StaticPagesController < ApplicationController
 		flash[:danger] = "Empty date"
 		redirect_to cat_path
 	else
-		time= params[:time].tr("T", " ")
-		@freeCats = Cat.joins(:time_cats).where("time != '#{time}'").group(:id)
+		dt = DateTime.parse(params[:time])
+		@freeCats = Cat.joins(:time_cats).where.not('? >= time and ? <= time', dt, dt - 30.minutes).group(:id)
 	end
+	
   end
 
   def food
