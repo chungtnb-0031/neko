@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_061734) do
+ActiveRecord::Schema.define(version: 2019_11_26_044616) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -90,6 +90,16 @@ ActiveRecord::Schema.define(version: 2019_11_25_061734) do
     t.integer "quantity", default: 1
     t.index ["cart_id"], name: "index_line_items_on_cart_id"
     t.index ["food_id"], name: "index_line_items_on_food_id"
+  end
+
+  create_table "time_cats", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "cat_id"
+    t.datetime "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cat_id"], name: "index_time_cats_on_cat_id"
+    t.index ["user_id"], name: "index_time_cats_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

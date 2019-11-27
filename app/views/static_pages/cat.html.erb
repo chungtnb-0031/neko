@@ -1,12 +1,34 @@
 <% provide :title, t(".title") %>
-<h1 style="margin:20px 0px 30px 0px"> <%= t ".title" %> </h1>
+<h1 style="margin:20px 0px 50px 0px"> <%= t ".title" %> </h1>
+<div class="div-center">
+	<div style="width:18%">
+		<%= form_for cat_path, method: :post do |f| %>
+			<h4><%= f.label :time, class: "text-black" %></h4>
+			<div>
+				<input name="time" type="datetime-local"/>
+			</div>
+			<%= f.submit "Filter", class: "btn btn-primary form-control" %>
+		<% end %>
+		<h4 style="margin-top:40px">Categories</h4>
+		<% @categories.each do |category| %>
+			
+			<%= link_to cats_index_path(category: category) , style: 'text-decoration: none;' do %>	
+				<li style="font-size:15px"><%= category %></li>
+			<% end %>
+		<% end %>
+	</div>
+	<div style="width:82%">
+		<ul style="display:flex; flex-wrap: wrap; justify-content:space-between">
+			<%= render @cats %>
+		</ul>
 
-<ul style="display:flex; flex-wrap: wrap; justify-content:space-between">
-  <%= render @cats %>
-</ul>
-
-<div style="width:98%; display:flex; flex-direction:column; align-items: flex-end">
-	<%= paginate @cats , theme: "twitter-bootstrap-3" %>
+		<div style="width:98%; display:flex; flex-direction:column; align-items: flex-end">
+			<%= paginate @cats , theme: "twitter-bootstrap-3" %>
+		</div>
+	</div>
 </div>
+
+
+
 
 

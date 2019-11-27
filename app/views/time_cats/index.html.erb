@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Time Cats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Cat</th>
+      <th>Time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @time_cats.each do |time_cat| %>
+      <tr>
+        <td><%= time_cat.user %></td>
+        <td><%= time_cat.cat %></td>
+        <td><%= time_cat.time %></td>
+        <td><%= link_to 'Show', time_cat %></td>
+        <td><%= link_to 'Edit', edit_time_cat_path(time_cat) %></td>
+        <td><%= link_to 'Destroy', time_cat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Time Cat', new_time_cat_path %>

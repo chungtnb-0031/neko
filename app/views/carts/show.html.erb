@@ -3,11 +3,6 @@
 		<section class="section">
 			<%= render(@cart.line_items) %>
 			<%= render(@cart.cat_items) %>
-			<div class="columns">
-				<div class="column">
-				<%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: "Are you sure? " }, class: 'btn btn-primary btn-sm' %>
-				</div>
-			</div>
 		</section>
 	</div>
 	<div class="price border-price text-right">
