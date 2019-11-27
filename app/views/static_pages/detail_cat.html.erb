@@ -58,7 +58,7 @@
 										<%= image_tag(user.image.url, style:'width:30%; object-fit:cover', alt:'...') %>
 									<% else %>
 										<div class="ava-box div-center">
-											<%= gravatar_for(user, size: 90) %>
+											<%= gravatar_for(user, size: 107) %>
 										</div>
 									<% end %>
 									<div class="cmt-detail">
@@ -83,7 +83,7 @@
 										<%= image_tag(user.image.url, style:'width:30%; object-fit:cover', alt:'...') %>
 									<% else %>
 										<div class="ava-box div-center">
-											<%= gravatar_for(user, size: 90) %>
+											<%= gravatar_for(user, size: 107) %>
 										</div>
 									<% end %>
 									<div class="cmt-detail">
@@ -124,7 +124,7 @@
 							<th scope="row"><%= i+1 %></th>
 							<% user = User.find_by id: time.user_id %>
 							<td><%= user.name %></td>
-							<td><%= time.time.strftime("at %I:%M %p on %d %B %Y")  %></td>
+							<td><%= time.time.strftime("%I:%M %p on %d %B %Y")  %></td>
 						</tr>
 					<% end %>
 				</tbody>
