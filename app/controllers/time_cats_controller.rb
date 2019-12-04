@@ -1,35 +1,35 @@
 class TimeCatsController < ApplicationController
   before_action :set_time_cat, only: [:show, :edit, :update, :destroy]
 
-  # GET /time_cats
-  # GET /time_cats.json
   def index
     @time_cats = TimeCat.all
   end
 
-  # GET /time_cats/1
-  # GET /time_cats/1.json
   def show
   end
 
-  # GET /time_cats/new
   def new
-    @time_cat = TimeCat.new
+	@cart = Cart.find(session[:cart_id])
+	@cat_item = Cart.find(session[:cart_id]).cat_items.first
+	@line_item = Cart.find(session[:cart_id]).line_items.first
+	if @cat_item.nil? || @line_item.nil?
+		flash[:danger] = "You have not chosen cat or food"
+		redirect_to root_path
+	else
+		@cart.destroy
+		session[:cart_id] = nil
+		@time_cat = TimeCat.new
+	end
   end
 
-  # GET /time_cats/1/edit
   def edit
   end
 
-  # POST /time_cats
-  # POST /time_cats.json
   def create
     @time_cat = TimeCat.new(time_cat_params)
-
     respond_to do |format|
       if @time_cat.save
-        format.html { redirect_to @time_cat, notice: 'Time cat was successfully created.' }
-        format.json { render :show, status: :created, location: @time_cat }
+        format.html { redirect_to root_path, notice: 'Complete.' }
       else
         format.html { render :new }
         format.json { render json: @time_cat.errors, status: :unprocessable_entity }
@@ -37,8 +37,6 @@ class TimeCatsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /time_cats/1
-  # PATCH/PUT /time_cats/1.json
   def update
     respond_to do |format|
       if @time_cat.update(time_cat_params)
@@ -51,8 +49,6 @@ class TimeCatsController < ApplicationController
     end
   end
 
-  # DELETE /time_cats/1
-  # DELETE /time_cats/1.json
   def destroy
     @time_cat.destroy
     respond_to do |format|
@@ -62,12 +58,10 @@ class TimeCatsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_time_cat
       @time_cat = TimeCat.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def time_cat_params
       params.require(:time_cat).permit(:user_id, :cat_id, :time)
     end

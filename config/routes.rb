@@ -1,13 +1,9 @@
 Rails.application.routes.draw do
-  get 'cats/index'
-  resources :time_cats
-  resources :cat_items
-  get 'foods/index'
-  resources :line_items
-  resources :carts
-  resources :foods, only: [:index]
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root "static_pages#home"
+  get 'cats/index'
+  get 'foods/index'
   get "/cat", to: "static_pages#cat"
   post "/cat", to: "static_pages#free_cat"
   get "/food", to: "static_pages#food"
@@ -26,4 +22,14 @@ Rails.application.routes.draw do
   resources :users, concerns: :paginatable
   resources :account_activations, only: :edit
   resources :password_resets, except: %i(index show destroy)
+  resources :line_items
+  resources :carts
+  resources :foods do
+	resources :food_rates
+  end
+  resources :cats do
+	resources :cat_rates
+  end
+  resources :time_cats
+  resources :cat_items
 end

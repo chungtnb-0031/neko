@@ -4,7 +4,7 @@
 $gray-medium-light: #eaeaea;
 $gray-light: #777;
 $gray: #555;
-$gray-darker: #222;
+$gray-darker: rgb(34, 34, 34);
 $main: #fddae1;
 $main-light: rgb(255, 238, 241);
 $main-strong: rgb(247, 178, 192);
@@ -317,6 +317,9 @@ h3 {
 	margin-top: 20px;
 }
 
+.comment-food {
+	display: flex;
+}
 .comment{
 	display: flex;
 	flex-direction: column;
@@ -328,6 +331,7 @@ h3 {
 	height: 130px;
 	margin: 10px 0px;
 	display: flex;
+	width: 450px;
 }
 
 .cmt-detail{
@@ -465,5 +469,37 @@ h3 {
 
 .ava-box{
 	height: 100%;
-	width: 30%;
+	width: 130px;
+	object-fit: cover;
+}
+
+.button_bottom{
+	position: absolute;
+	bottom: 0;
+}
+
+.comment-form{
+	width: 70%;
+}
+
+.radio_buttons{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.radio{
+	margin-top: 10px !important;
+}
+
+.radio_buttons .optional{
+	visibility: hidden;
+}
+
+.fa-stack:hover{
+	color: $main-strong;
+}
+
+.fas:hover{
+	color: $main-strong;
 }

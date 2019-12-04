@@ -38,79 +38,65 @@
 				</div>
 				<h5 style="text-align:left; margin-left:10px"><%= @food.num_of_rates %><i class="fa fa-user" style="margin-left:5px"></i></h5>
 			</div>
-
-			<%= button_to 'Add to cart', line_items_path(food_id: @food), class: 'btn btn-primary btn-sm' %>
+			<div style="padding-top:80px">
+				<%= button_to 'Add to cart', line_items_path(food_id: @food), class: 'btn btn-primary btn-sm' %>
+			</div>
 		</div>
 	</div>
 	<h2 style="margin:30px 0;">Comment</h2>
-	<div class="comment">
-		<% if !@food.food_rates.empty? %>
-			<input type="checkbox" class="read-more-state" id="post-2" />
-  			<div class="read-more-wrap">
-				<% @food.food_rates.each_with_index do |rate,i|%>
-					<% if(i<3) %>
-						<div class="box-comt">
-							<% user = User.find_by id: rate.user_id %>
-							
-							<% if(!user.image.url.nil?) %>
-								<%= image_tag(user.image.url, style:'width:30%; object-fit:cover', alt:'...') %>
-							<% else %>
-								<div class="ava-box div-center">
-									<%= gravatar_for(user, size: 109) %>
-								</div>
-							<% end %>
-							
-							<div class="cmt-detail">
-								<h4><%= user.name %></h4>
-								<i><%= time_ago_in_words(rate.created_at)%></i>
-								<span style="margin-top:10px"> <%= rate.comment%> <span>
-								<div style="display:flex;">
-									<div class="star">
-										<% rate.rate_point.to_i.times do  %>
-											<span class="glyphicon glyphicon-star"></span>
-										<% end %>
+	<div class="comment-food">
+		<div style="width:50%; padding:10px;" class="comment">
+			<% if logged_in? %>
+				<div class="comment-form">
+					<%= render 'shared/food_rate_form' %>
+				</div>
+			<% else %>
+				<div class="content"><%= link_to 'Sign in', login_path, style: 'font-weight: bold;'%> to leave a comment.</div>
+			<% end %>
+		</div>
+		<div style="width:50%" class="comment">
+			<% if !@food.food_rates.empty? %>
+				<div>
+					<% @food.food_rates.order('created_at DESC').each_with_index do |rate,i|%>
+						<% user = User.find_by id: rate.user_id %>
+						<% if(i<@food.food_rates.count) %>
+							<div class="box-comt">
+								<% if(user.image.url.nil?) %>
+									<%= image_tag('https://secure.gravatar.com/avatar/1',class: "ava-box") %>
+								<% else %>
+									<%= image_tag(user.image.url,class: "ava-box", alt:'...') %>
+								<% end %>
+								
+								<div class="cmt-detail" style="text-align: left;">
+									<h4><%= user.name %></h4>
+									<span style="margin-top:10px"> <%= rate.comment%> <span>
+									<div style="display:flex; align-items:center">
+										<div class="star">
+											<% rate.rate_point.to_i.times do  %>
+												<span class="glyphicon glyphicon-star"></span>
+											<% end %>
+										</div>
+										<div class="star-not">
+											<% (5 - rate.rate_point.to_i).to_i.times do  %>
+												<span class="glyphicon glyphicon-star"></span>
+											<% end %>
+										</div>
 									</div>
-									<div class="star-not">
-										<% (5 - rate.rate_point.to_i).to_i.times do  %>
-											<span class="glyphicon glyphicon-star"></span>
+									<% if logged_in? %>
+										<% if (current_user.id != user.id) %>
+											<i><%= time_ago_in_words(rate.created_at)%></i>
+										<% else %>
+											<div>
+												<%= link_to 'Delete', [rate.food, rate], method: :delete, data: { confirm: 'Are you sure?' } %>
+											</div>
 										<% end %>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					<% else %>
-						<div class="box-comt read-more-target">
-							<% user = User.find_by id: rate.user_id %>
-							<% if(!user.image.url.nil?) %>
-								<%= image_tag(user.image.url, style:'width:30%; object-fit:cover', alt:'...') %>
-							<% else %>
-								<div class="ava-box div-center">
-									<%= gravatar_for(user, size: 109) %>
-								</div>
-							<% end %>
-							<div class="cmt-detail">
-								<h4><%= user.name %></h4>
-								<i><%= time_ago_in_words(rate.created_at)%></i>
-								<span style="margin-top:10px"> <%= rate.comment%> <span>
-								<div style="display:flex;">
-									<div class="star">
-										<% rate.rate_point.to_i.times do  %>
-											<span class="glyphicon glyphicon-star"></span>
-										<% end %>
-									</div>
-									<div class="star-not">
-										<% (5 - rate.rate_point.to_i).to_i.times do  %>
-											<span class="glyphicon glyphicon-star"></span>
-										<% end %>
-									</div>
+									<% end %>
 								</div>
 							</div>
-						</div>
+						<% end %>
 					<% end %>
-				<% end %>
-			</div>
-  			<label for="post-2" class="read-more-trigger"></label>
-		<% end %>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>

@@ -37,56 +37,27 @@
 				<span style="margin:0px 5px 0px 15px"><%= @cat.num_of_rates %></span>
 				<i class="star fas fa-comment"></i>
 			</div>
-			<div style="padding-top:130px"> 
+			
+			<div> 
 				<%= button_to 'Order', cat_items_path(cat_id: @cat), class: 'btn btn-primary btn-sm' %>
 			</div>
 		</div>
 	</div>
 	<div style="display:flex; justify-content:space-evenly">	
-		<div style="width:50%" class="comment">
-			<h2 style="margin:35px 0;">Comment</h2>
-			<% if logged_in? %>
-				<div class="comment-form">
-					<%= render 'shared/cat_rate_form' %>
-				</div>
-			<% else %>
-				<div class="content"><%= link_to 'Sign in', login_path, style: 'font-weight: bold;'%> to leave a comment.</div>
-			<% end %>
-			<div class="comment" style="margin-top:20px">
+		<div style="width:50%">
+			<h2 style="margin:30px 0;">Comment</h2>
+			<section>
+				<%= render "shared/cat_rate_form" %>
+			</section>
+			<div class="comment">
 				<% if !@cat.cat_rates.empty? %>
-					<div class="">
-						<% @cat.cat_rates.order('created_at DESC').each_with_index do |rate,i| %>
-							<% user = User.find_by id: rate.user_id %>
-							<% if(i < @cat.cat_rates.count) %>
-								<div class="box-comt">
-									<% if(user.image.url.nil?) %>			
-										<%= image_tag('https://secure.gravatar.com/avatar/1',class: "ava-box") %>
-									<% else %>
-										<%= image_tag(user.image.url,class: "ava-box", alt:'...') %>
-									<% end %>
-									<div class="cmt-detail">
-										<h4><%= user.name %></h4>
-										<div class="div-center">
-											<div class="like">
-												<% if (rate.rate_point > 0) %>
-													<i class="fas fa-thumbs-up"></i>
-												<% else %>
-													<i class="fas fa-comment"></i>
-												<% end %>
-											</div>
-											<i><%= time_ago_in_words(rate.created_at)%></i>
-										</div>
-										<span style="margin-top:10px"> <%= rate.comment%> </span>
-										<% if logged_in? %>
-											<% if (current_user.id == user.id) %>
-												<%= link_to 'Delete', [rate.cat, rate], method: :delete, data: { confirm: 'Are you sure?' } %>
-											<% end %>
-										<% end %>
-									</div>
-								</div>
-							<% end %>
+					<input type="checkbox" class="read-more-state" id="post-2" />
+					<div class="read-more-wrap">
+						<% @cat.cat_rates.each_with_index do |rate,i| %>
+							<%= rate %>
 						<% end %>
 					</div>
+					<label for="post-2" class="read-more-trigger"></label>
 				<% end %>
 			</div>
 		</div>
@@ -101,7 +72,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% @cat.time_cats.sort_by(&:time).each_with_index do |time,i| %>
+					<% @cat.time_cats.each_with_index do |time,i| %>
 						<tr class="text-left">
 							<th scope="row"><%= i+1 %></th>
 							<% user = User.find_by id: time.user_id %>
