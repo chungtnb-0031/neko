@@ -1,4 +1,5 @@
 class CatItemsController < ApplicationController
+	before_action :logged_in_user
 	include CurrentCart
 	before_action :set_cat_item, only: [:show, :edit, :update, :destroy]
 	before_action :set_cart, only: [:create]
@@ -70,5 +71,12 @@ class CatItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cat_item_params
       params.require(:cat_item).permit(:cat_id)
-    end
+	end
+	
+	def logged_in_user
+		return if logged_in?
+		store_location
+		flash[:danger] = "You are not logged in"
+		redirect_to login_url
+	end
 end

@@ -1,16 +1,21 @@
 <div class="cart" style="margin-top: 40px;">
 	<div class="product">
-		<section class="section">
-			<%= render(@cart.line_items) %>
-			<%= render(@cart.cat_items) %>
-		</section>
+		<% if @cart.line_items.blank? && @cart.cat_items.blank? %>
+			<h2>Blank Cart<h2>
+		<% else %>
+			<section class="section">
+				<%= render(@cart.line_items) %>
+				<%= render(@cart.cat_items) %>
+			</section>
+			<%= link_to 'Delete Cart', @cart, method: :delete, class: 'btn btn-primary', style:"margin-top:10px; float:right;" %>
+		<% end %>
 	</div>
 	<div class="price border-price text-right">
 		<h4>
 			Total: <%= number_to_currency(@cart.total_price , unit: "VND", format: "%n %u", precision: 0) %>
 		</h4>
 		<p><%= link_to 'Keep Booking', root_path, class: 'button is-warning', style:"text-decoration: underline;" %><p>
-		<%= link_to 'Complete', @cart, method: :delete, class: 'btn btn-primary', style:"margin-top:10px" %>
+		<%= link_to 'Proceed to ordering', new_time_cat_path , class: 'btn btn-primary', style:"margin-top:10px" %>
 	</div>
 </div>
 

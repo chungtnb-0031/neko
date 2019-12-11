@@ -20,12 +20,18 @@
 		<% if logged_in? %>
 			
 				<% if total_cart_items %>
-					<%= link_to cart_path(@cart), class:"navbar-item button is-warning" do %>
+					<%= link_to cart_path(@cart), class:"navbar-item" do %>
 						<span class="icon is-small">
 							<i class="fa fa-shopping-cart"></i>
 						</span>
 						<span>
 							<%= cart_count_over_one %>
+						</span>
+					<% end %>
+				<% else %>
+					<%= link_to cart_path(@cart), class:"navbar-item" do %>
+						<span class="icon is-small">
+							<i class="fa fa-shopping-cart"></i>
 						</span>
 					<% end %>
 				<% end %>

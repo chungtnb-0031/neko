@@ -23,6 +23,12 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
 
+#   config.authorize_with do |controller|
+# 	if !_current_user.admin?
+# 	  redirect_to root_path, flash: {error: 'You are not Admin!'}
+# 	end
+#   end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
@@ -37,5 +43,33 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model CatImage do
+	list do
+	  field :id 
+      field :cat_id
+	  field :link do
+		pretty_value do
+			bindings[:view].tag(:img, { :src => bindings[:object].link})
+		end
+	  end
+	  field :created_at
+      field :updated_at
+	end
+  end
+
+  config.model FoodImage do
+	list do
+	  field :id 
+      field :food_id 
+	  field :link do
+		pretty_value do
+			bindings[:view].tag(:img, { :src => bindings[:object].link})
+		end
+	  end
+	  field :created_at
+      field :updated_at
+	end
   end
 end

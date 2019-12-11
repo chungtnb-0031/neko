@@ -1,0 +1,43 @@
+<%= simple_form_for([@food, @food.food_rates.build]) do |f| %>
+	<%= f.input :comment, :as => :text, input_html: { 'rows' => 8, 'cols' => 30 }, label: false %>
+	<%= f.input :rate_point, 
+		:collection => [
+			[5,'<span class="fa-stack">
+					<span class="fa fa-star fa-stack-2x"></span>
+					<strong class="fa-stack-1x" style="font-size:80%; color:white">
+						5
+					</strong>
+				</span>'.html_safe],
+			[4, '<span class="fa-stack">
+					<span class="fa fa-star fa-stack-2x"></span>
+					<strong class="fa-stack-1x" style="font-size:80%; color:white">
+						4
+					</strong>
+				</span>'.html_safe], 
+			[3, '<span class="fa-stack">
+					<span class="fa fa-star fa-stack-2x"></span>
+					<strong class="fa-stack-1x" style="font-size:80%; color:white">
+						3
+					</strong>
+				</span>'.html_safe], 
+			[2, '<span class="fa-stack">
+					<span class="fa fa-star fa-stack-2x"></span>
+					<strong class="fa-stack-1x" style="font-size:80%; color:white">
+						2
+					</strong>
+				</span>'.html_safe], 
+			[1, '<span class="fa-stack">
+					<span class="fa fa-star fa-stack-2x"></span>
+					<strong class="fa-stack-1x" style="font-size:80%; color:white">
+						1
+					</strong>
+				</span>'.html_safe]
+		], 
+		label_method: :last, 
+		value_method: :first,
+		as: :radio_buttons, 
+		item_wrapper_class: 'inline',
+		checked: true,
+		label: false %>
+	<%= f.button :submit, 'Leave a comment', class: 'btn btn-primary' %>
+<% end %>

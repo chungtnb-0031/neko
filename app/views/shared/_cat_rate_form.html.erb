@@ -1,0 +1,15 @@
+<%= simple_form_for([@cat, @cat.cat_rates.build]) do |f| %>
+	<%= f.input :comment, :as => :text, input_html: { 'rows' => 8, 'cols' => 30 }, label: false %>
+	<%= f.input :rate_point, 
+		:collection => [
+			[1, '<i class="fas fa-thumbs-up" style="font-size: 30px;"></i>'.html_safe],
+			[0, '<i class="fas fa-thumbs-down" style="font-size: 30px;"></i>'.html_safe]
+		], 
+		label_method: :last, 
+		value_method: :first,
+		as: :radio_buttons, 
+		item_wrapper_class: 'inline',
+		checked: true,
+		label: false %>
+	<%= f.button :submit, 'Leave a comment', class: 'btn btn-primary' %>
+<% end %>
