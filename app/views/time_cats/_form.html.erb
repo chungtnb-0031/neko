@@ -13,20 +13,22 @@
 
   <div class="field">
 	<% user = User.find_by id: current_user.id %>
-    <b>User: </b><%= form.label :user_id , user.name %>
+    <h4><b>User: </b><%= form.label :user_id , user.name, class: 'form-control' %></h4>
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="field">
 	<% cat_id = @cat_item.cat_id %>
 	<% cat = Cat.find(cat_id) %>
-	<b>Cat: </b><%= form.label :cat_id , cat.name %>
+	<h4><b>Cat: </b><%= form.label :cat_id , cat.name, class: 'form-control' %></h4>
 	<%= form.hidden_field :cat_id, value: cat_id %>
   </div>
 
   <div class="field">
-    <%= form.label :time %>
-	<%= form.datetime_field :time, min: Date.today %>
+    <h4><%= form.label :time %></h4>
+	<div class="select_time ">
+		<%= form.datetime_select :time, start_year: Time.current.year, ampm: true, prompt: true, minute_step: 10 %>
+	</div>
   </div>
 
   <%= form.submit "Confirm", class: "btn btn-primary" %>

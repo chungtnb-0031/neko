@@ -60,9 +60,9 @@
 							<% if(i < @cat.cat_rates.count) %>
 								<div class="box-comt">
 									<% if(user.image.url.nil?) %>			
-										<%= image_tag('https://secure.gravatar.com/avatar/1',class: "ava-box") %>
+										<%= image_tag('https://secure.gravatar.com/avatar/1',class: "ava-box-cmt") %>
 									<% else %>
-										<%= image_tag(user.image.url,class: "ava-box", alt:'...') %>
+										<%= image_tag(user.image.url,class: "ava-box-cmt", alt:'...') %>
 									<% end %>
 									<div class="cmt-detail">
 										<h4><%= user.name %></h4>

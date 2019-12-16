@@ -9,15 +9,14 @@ class TimeCatsController < ApplicationController
   end
 
   def new
-	@cart = Cart.find(session[:cart_id])
 	@cat_item = Cart.find(session[:cart_id]).cat_items.first
 	@line_item = Cart.find(session[:cart_id]).line_items.first
 	if @cat_item.nil? || @line_item.nil?
 		flash[:danger] = "You have not chosen cat or food"
 		redirect_to root_path
 	else
-		@cart.destroy
-		session[:cart_id] = nil
+		cat_id = @cat_item.cat_id
+		@cat = Cat.find(cat_id)
 		@time_cat = TimeCat.new
 	end
   end
@@ -26,15 +25,18 @@ class TimeCatsController < ApplicationController
   end
 
   def create
-    @time_cat = TimeCat.new(time_cat_params)
-    respond_to do |format|
-      if @time_cat.save
-        format.html { redirect_to root_path, notice: 'Complete.' }
-      else
-        format.html { render :new }
-        format.json { render json: @time_cat.errors, status: :unprocessable_entity }
-      end
-    end
+	@cart = Cart.find(session[:cart_id])
+	@time_cat = TimeCat.new(time_cat_params)
+	respond_to do |format|
+		if @time_cat.save
+			format.html { redirect_to root_path, notice: 'Complete' }
+			@cart.destroy
+			session[:cart_id] = nil
+		else
+			format.html { render :new }
+			format.json { render json: @time_cat.errors, status: :unprocessable_entity }
+		end
+	end
   end
 
   def update

@@ -33,6 +33,7 @@
 			<span style="text-align:left; margin-left:10px"><%= @food.description %></span>
 			<h5 style="text-align:left; margin-left:10px">Price: <%= number_to_currency(@food.price , unit: "VND", format: "%n %u", precision: 0) %> </h5>
 			<div style="margin-left:10px; display:flex;">
+				<p style="margin-top:4px !important"><%= @food.average_point %><p>
 				<div class="star">
 					<%= render_stars(@food.average_point) %>
 				</div>
@@ -62,9 +63,9 @@
 						<% if(i<@food.food_rates.count) %>
 							<div class="box-comt">
 								<% if(user.image.url.nil?) %>
-									<%= image_tag('https://secure.gravatar.com/avatar/1',class: "ava-box") %>
+									<%= image_tag('https://secure.gravatar.com/avatar/1',class: "ava-box-cmt") %>
 								<% else %>
-									<%= image_tag(user.image.url,class: "ava-box", alt:'...') %>
+									<%= image_tag(user.image.url,class: "ava-box-cmt", alt:'...') %>
 								<% end %>
 								
 								<div class="cmt-detail" style="text-align: left;">
