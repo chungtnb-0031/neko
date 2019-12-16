@@ -11,6 +11,7 @@ class TimeCatsController < ApplicationController
   def new
 	@cat_item = Cart.find(session[:cart_id]).cat_items.first
 	@line_item = Cart.find(session[:cart_id]).line_items.first
+	
 	if @cat_item.nil? || @line_item.nil?
 		flash[:danger] = "You have not chosen cat or food"
 		redirect_to root_path
