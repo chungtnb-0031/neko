@@ -25,6 +25,10 @@
   </div>
 
   <div class="field">
+	<h4><b>Payment amount: </b><%= form.label number_to_currency(@cart.total_price , unit: "VND", format: "%n %u", precision: 0), class: 'form-control' %></h4>
+  </div>
+
+  <div class="field">
     <h4><%= form.label :time %></h4>
 	<div class="select_time ">
 		<%= form.datetime_select :time, start_year: Time.current.year, ampm: true, prompt: true, minute_step: 10 %>

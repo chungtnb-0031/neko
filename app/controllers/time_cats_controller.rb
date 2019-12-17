@@ -9,6 +9,7 @@ class TimeCatsController < ApplicationController
   end
 
   def new
+	@cart = Cart.find(session[:cart_id])
 	@cat_item = Cart.find(session[:cart_id]).cat_items.first
 	@line_item = Cart.find(session[:cart_id]).line_items.first
 	
@@ -37,7 +38,7 @@ class TimeCatsController < ApplicationController
 			format.html { render :new }
 			format.json { render json: @time_cat.errors, status: :unprocessable_entity }
 		end
-	end
+	end	
   end
 
   def update
